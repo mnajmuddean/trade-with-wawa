@@ -111,7 +111,7 @@ footer p{margin:0 0 .6rem;max-width:80ch}
 @media (max-width:900px){.steps li.rv.in{border-top-color:transparent;border-left-color:var(--accent)}}
 @media (prefers-reduced-motion:reduce){.steps li{border-top-color:var(--accent)}.float{transition:none}}
 .lw{width:100%;height:340px}.lw.big{height:min(460px,62vh)}
-.tvw{height:min(560px,72vh)}.tvw[hidden]{display:none}.tvw tv-advanced-chart{display:block;width:100%;height:100%}
+.tvw{height:min(440px,62vh)}.tvw[hidden]{display:none}.tvw tv-advanced-chart{display:block;width:100%;height:100%}
 </style>
 </head>
 <body>
@@ -131,17 +131,10 @@ footer p{margin:0 0 .6rem;max-width:80ch}
 <p class="fine" data-i18n="fine">Free to join. No promises about profit.</p>
 </div>
 <figure class="chart" style="margin:0">
-<div class="lw" role="img" aria-label="Illustrated gold candlestick chart with supply and demand zones"></div>
+<div class="lw" role="img" aria-label="Illustrated gold candlestick chart with supply and demand zones"></div><div class="tvw" id="tvw" hidden></div>
 <figcaption data-i18n="cap">Illustration, not real price data.</figcaption>
 </figure>
 </div>
-
-<section id="chart"><div class="wrap">
-<h2 data-i18n="chh">How we read a gold chart</h2>
-<p class="lead" data-i18n="chl">Price rises into a supply zone, falls back to a demand zone and bounces. We mark these areas first, then wait.</p>
-<div class="tv"><div class="lw big" role="img" aria-label="Illustrated gold candlestick chart with supply and demand zones"></div><div class="tvw" id="tvw" hidden></div></div>
-<p class="fine" data-i18n="chn">Illustration only, not real price data or a trade signal.</p>
-</div></section>
 
 <section id="method"><div class="wrap">
 <h2 data-i18n="mh">How we look at every trade</h2>
@@ -263,17 +256,17 @@ var sl=window.setLang;window.setLang=function(l,v){sl(l,v);lang()};
 }catch(e){}})();
 </script>
 <script>
-Object.assign(T.en,{chh2:"Gold, live",chl2:"A live XAUUSD chart. Zoom in, change the timeframe and try marking the levels yourself.",chn2:"For learning only, not a trade signal. Chart by TradingView."});
-Object.assign(T.ms,{chh2:"Emas, secara langsung",chl2:"Carta XAUUSD langsung. Zum, tukar jangka masa dan cuba tanda paras sendiri.",chn2:"Untuk pembelajaran sahaja, bukan isyarat dagangan. Carta oleh TradingView."});
-Object.assign(T.id,{chh2:"Emas, live",chl2:"Chart XAUUSD live. Zoom, ganti timeframe, dan coba tandai level sendiri.",chn2:"Hanya untuk belajar, bukan sinyal trading. Chart oleh TradingView."});
-(function(){var box=document.getElementById("tvw"),sec=document.getElementById("chart");if(!box||!("IntersectionObserver" in window))return;
-new IntersectionObserver(function(es,o){if(!es[0].isIntersecting)return;o.disconnect();
-var s=document.createElement("script");s.type="module";s.src="https://widgets.tradingview-widget.com/w/en/tv-advanced-chart.js";
+Object.assign(T.en,{cap2:"Live XAUUSD chart, for learning only and not a trade signal. Chart by TradingView."});
+Object.assign(T.ms,{cap2:"Carta XAUUSD langsung, untuk pembelajaran sahaja dan bukan isyarat dagangan. Carta oleh TradingView."});
+Object.assign(T.id,{cap2:"Chart XAUUSD live, hanya untuk belajar dan bukan sinyal trading. Chart oleh TradingView."});
+(function(){var box=document.getElementById("tvw"),fig=document.querySelector(".hero .chart");if(!box||!fig)return;
+function go(){var s=document.createElement("script");s.type="module";s.src="https://widgets.tradingview-widget.com/w/en/tv-advanced-chart.js";
 s.onload=function(){var w=document.createElement("tv-advanced-chart");w.setAttribute("symbol","OANDA:XAUUSD");w.setAttribute("time-frame","12M");w.setAttribute("allow-symbol-change","true");w.setAttribute("theme",matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");
-box.appendChild(w);box.hidden=false;sec.querySelector(".lw").style.display="none";
-["chh","chl","chn"].forEach(function(k){var e=sec.querySelector('[data-i18n="'+k+'"]');if(e)e.setAttribute("data-i18n",k+"2")});
+box.appendChild(w);box.hidden=false;fig.querySelector(".lw").style.display="none";
+var c=fig.querySelector('[data-i18n="cap"]');if(c)c.setAttribute("data-i18n","cap2");
 var l=document.documentElement.lang;window.setLang(l==="ms"||l==="id"?l:"en",false)};
-document.head.appendChild(s)},{rootMargin:"300px"}).observe(sec)})();
+document.head.appendChild(s)}
+go()})();
 </script>
 </body>
 </html>
